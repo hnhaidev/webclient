@@ -98,7 +98,7 @@ $(function() {
 
     services.map((val) => {
         $(`
-        <div class="col-lg-4 service-item">
+        <div class="col-lg-4 col-sm-6 col-xs-12 service-item">
             <a href="">
                 <img src=${val.img} alt="">
                 <p>${val.name}</p>
@@ -127,10 +127,29 @@ $(function() {
         </div>
         `).appendTo(".client-evaluate.owl-carousel.owl-theme");
     })
-    $('.client-evaluate.owl-carousel.owl-theme').owlCarousel({
-        items: 3,
-        loop: true,
-        margin: 10,
-    })
+
+    // kiểm tra độ rộng page
+    $(window).scroll(function() {
+        let withPage = $(window).width();;
+        if (withPage > 992) {
+            $('.client-evaluate.owl-carousel.owl-theme').owlCarousel({
+                items: 3,
+                loop: true,
+                margin: 10,
+            })
+        } else if (withPage > 576 && withPage < 992) {
+            $('.client-evaluate.owl-carousel.owl-theme').owlCarousel({
+                items: 2,
+                loop: true,
+                margin: 10,
+            })
+        } else if (withPage < 576) {
+            $('.client-evaluate.owl-carousel.owl-theme').owlCarousel({
+                items: 1,
+                loop: true,
+                margin: 10,
+            })
+        }
+    });
 
 });
